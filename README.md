@@ -9,7 +9,7 @@ A modern, full-stack web application built with Next.js 16 for discovering, crea
 - **Event Discovery**: Browse and search through developer events, hackathons, and conferences
 - **Event Creation**: Create and manage your own events with image uploads
 - **Event Booking**: Book spots for events with email notifications
-- **Similar Events**: AI-powered event recommendations based on tags
+- **Similar Events**: Event recommendations based on tags
 - **Responsive Design**: Mobile-first design with beautiful animations
 - **Real-time Updates**: Server-side rendering with caching for optimal performance
 
