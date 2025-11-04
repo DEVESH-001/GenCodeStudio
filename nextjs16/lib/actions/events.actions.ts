@@ -10,7 +10,7 @@ export const getAllEvents = async(): Promise<IEventData[]> => {
         
         return events.map(event => ({
             ...event,
-            _id: String((event as any)._id),
+            _id: String(event._id),
         })) as unknown as IEventData[];
         
     } catch {
@@ -25,10 +25,11 @@ export const getEventBySlug = async(slug: string): Promise<IEventData | null> =>
         
         if (!event) return null;
         
+        const eventData = event as unknown as IEventData;
         return {
-            ...event,
-            _id: String((event as any)._id),
-        } as unknown as IEventData;
+            ...eventData,
+            _id: String(eventData._id),
+        };
         
     } catch {
         return null;
@@ -38,10 +39,11 @@ export const getEventBySlug = async(slug: string): Promise<IEventData | null> =>
 export const getSimilartEventsBySlug = async(slug:string): Promise<IEventData[]>=>{
     try {
         await connectDB();
-        const event = await Event.findOne({slug});
+        const event = await Event.findOne({slug}).lean().exec();
         if (!event) return [];
 
-        const similarEvents = await Event.find({_id:{$ne:event._id},tags:{$in:event.tags}}).select({
+        const eventData = event as unknown as IEventData;
+        const similarEvents = await Event.find({_id:{$ne:eventData._id},tags:{$in:eventData.tags}}).select({
             title: 1,
             slug: 1,
             image: 1,
@@ -53,7 +55,7 @@ export const getSimilartEventsBySlug = async(slug:string): Promise<IEventData[]>
         
         return similarEvents.map(event => ({
             ...event,
-            _id: String((event as unknown)._id),
+            _id: String(event._id),
         })) as unknown as IEventData[];
         
     } catch {
