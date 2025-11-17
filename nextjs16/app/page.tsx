@@ -1,5 +1,5 @@
+import Link from "next/link";
 import EventCard from "@/components/EventCard";
-import ExploreBtn from "@/components/ExploreBtn";
 import { IEventData } from "@/database";
 import { cacheLife } from "next/cache";
 import { getAllEvents } from "@/lib/actions/events.actions";
@@ -19,7 +19,18 @@ async function Home() {
         Hackathons, Meetups, and Conferences, All in One Place
       </p>
 
-      <ExploreBtn />
+      <div className="text-center mt-7">
+        <p className="mt-4 text-sm text-gray-600">
+          <Link
+            href="https://www.devesh.work/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-600 underline"
+          >
+            Built by Devesh
+          </Link>
+        </p>
+      </div>
 
       <div className="mt-20 space-y-7">
         <h3>Featured Events</h3>
